@@ -17,7 +17,7 @@ public class NewBehaviourScript : MonoBehaviour
     if (Input.GetKey(KeyCode.Space)) {
         // Rendererコンポーネントのmaterialのcolorを呼び出し
         // Colorクラスのred(=赤色のRGBデータ)を値にセットする
-        gameObject.GetComponent<Renderer>().material.color = Color.red;
+        gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
     }
     }
 }
