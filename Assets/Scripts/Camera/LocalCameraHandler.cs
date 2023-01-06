@@ -5,9 +5,10 @@ using UnityEngine;
 public class LocalCameraHandler : MonoBehaviour
 {
     public Transform cameraAnchorPoint;
-
+    private Vector3 offset;
     //Input
     Vector2 viewInput;
+   
 
     //Rotation
     float cameraRotationX = 0;
@@ -29,6 +30,8 @@ public class LocalCameraHandler : MonoBehaviour
         //Detach camera if enabled
         if (localCamera.enabled)
             localCamera.transform.parent = null;
+
+            offset =localCamera.transform.position - cameraAnchorPoint.position;
     }
 
     void LateUpdate()
@@ -40,16 +43,16 @@ public class LocalCameraHandler : MonoBehaviour
             return;
 
         //Move the camera to the position of the player
-        localCamera.transform.position = cameraAnchorPoint.position;
+        localCamera.transform.position = cameraAnchorPoint.position+ offset;
 
         //Calculate rotation
-        cameraRotationX += viewInput.y * Time.deltaTime * networkCharacterControllerPrototypeCustom.viewUpDownRotationSpeed;
-        cameraRotationX = Mathf.Clamp(cameraRotationX, -90, 90);
+        // cameraRotationX += viewInput.y * Time.deltaTime * networkCharacterControllerPrototypeCustom.viewUpDownRotationSpeed;
+        // cameraRotationX = Mathf.Clamp(cameraRotationX, -90, 90);
 
-        cameraRotationY += viewInput.x * Time.deltaTime * networkCharacterControllerPrototypeCustom.rotationSpeed;
+        // cameraRotationY += viewInput.x * Time.deltaTime * networkCharacterControllerPrototypeCustom.rotationSpeed;
 
         //Apply rotation
-        localCamera.transform.rotation = Quaternion.Euler(cameraRotationX, cameraRotationY, 0);
+        // localCamera.transform.rotation = Quaternion.Euler(cameraRotationX, cameraRotationY, 0);
 
     }
     public void SetViewInputVector(Vector2 viewInput)
