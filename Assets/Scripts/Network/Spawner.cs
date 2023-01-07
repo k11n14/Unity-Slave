@@ -8,6 +8,7 @@ using System;
 public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
 {
     public NetworkPlayer playerPrefab;
+    public GameObject players;
 
     //Other compoents
     CharacterInputHandler characterInputHandler;
