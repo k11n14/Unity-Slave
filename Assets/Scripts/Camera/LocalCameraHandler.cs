@@ -11,8 +11,8 @@ public class LocalCameraHandler : MonoBehaviour
    
 
     //Rotation
-    float cameraRotationX = 0;
-    float cameraRotationY = 0;
+    //float cameraRotationX = 0;
+    //float cameraRotationY = 0;
 
     //Other components
     NetworkCharacterControllerPrototypeCustom networkCharacterControllerPrototypeCustom;

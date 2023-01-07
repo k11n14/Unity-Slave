@@ -63,6 +63,13 @@ public class OniGenerator : MonoBehaviour
                         players.Remove(obj);
                     }
 
+                    obj.tag = "Player";
+
+                    if (GameObject.FindGameObjectWithTag("Oni") == null)
+                    {
+                        obj.tag = "Oni";
+                    }
+
                     if (id < minNumber)
                     {
                         minNumber = id;
