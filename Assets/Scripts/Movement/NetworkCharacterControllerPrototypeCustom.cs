@@ -92,7 +92,17 @@ public class NetworkCharacterControllerPrototypeCustom : NetworkTransform {
     var previousPos  = transform.position;
     var moveVelocity = Velocity;
 
-    direction = direction.normalized;
+        if(tag == "Oni")
+        {
+            maxSpeed = 10.0f;
+
+        }
+        else
+        {
+            maxSpeed = 2.0f;
+        }
+
+        direction = direction.normalized;
 
     if (IsGrounded && moveVelocity.y < 0) {
       moveVelocity.y = 0f;
