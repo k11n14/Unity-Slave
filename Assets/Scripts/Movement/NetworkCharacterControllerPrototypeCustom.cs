@@ -99,7 +99,7 @@ public class NetworkCharacterControllerPrototypeCustom : NetworkTransform {
         }
         else
         {
-            maxSpeed = 2.0f;
+            maxSpeed = 5.0f;
         }
 
         direction = direction.normalized;
