@@ -23,18 +23,18 @@ public class Touch : MonoBehaviour
     }
 
     // 当たった時に呼ばれる関数
+    // 当たった時に呼ばれる関数
     void OnCollisionEnter(Collision other)
     {
-        
         if (other.gameObject.tag == "Oni")
         {
             Debug.Log("Touched!!"); // ログを表示する
+
+            //GameObject oni = GameObject.Find("Oni");
+            other.gameObject.tag = "Player";
             parent.tag = "Oni";
-            
         }
     }
-
-
 }
 
 
