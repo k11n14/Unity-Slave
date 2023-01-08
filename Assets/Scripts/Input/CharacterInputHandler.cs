@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterInputHandler : MonoBehaviour
 {
     Vector2 moveInputVector = Vector2.zero;
-    Vector2 viewInputVector = Vector2.zero;
+    //Vector2 viewInputVector = Vector2.zero;
     bool isJumpButtonPressed = false;
 
     //Other components
@@ -19,16 +19,16 @@ public class CharacterInputHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         //View input
-        viewInputVector.x = Input.GetAxis("Mouse X");
-        viewInputVector.y = Input.GetAxis("Mouse Y") * -1; //Invert the mouse look
+        //viewInputVector.x = Input.GetAxis("Mouse X");
+        //viewInputVector.y = Input.GetAxis("Mouse Y") * -1; //Invert the mouse look
 
         //Move input
         moveInputVector.x = Input.GetAxis("Horizontal");
@@ -39,7 +39,7 @@ public class CharacterInputHandler : MonoBehaviour
             isJumpButtonPressed = true;
 
         //Set view
-        localCameraHandler.SetViewInputVector(viewInputVector);
+        //localCameraHandler.SetViewInputVector(viewInputVector);
 
     }
 
