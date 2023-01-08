@@ -76,7 +76,7 @@ public class OniGenerator : MonoBehaviour
                     }
                 }
             }
-        Debug.Log("playerCount" + playerCount);
+        Debug.Log("playerCount:" + playerCount);
 
         }
         //Debug.Log(minNumber);
