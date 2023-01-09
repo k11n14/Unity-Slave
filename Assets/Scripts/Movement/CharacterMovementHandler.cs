@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using UnityEngine.UI;
+
+
 
 public class CharacterMovementHandler : NetworkBehaviour
 {
@@ -17,6 +20,12 @@ public class CharacterMovementHandler : NetworkBehaviour
     void Start()
     {
     }
+
+
+
+
+
+
 
     public override void FixedUpdateNetwork()
     {
@@ -46,6 +55,8 @@ public class CharacterMovementHandler : NetworkBehaviour
         }
 
     }
+
+
 
     void CheckFallRespawn()
     {
