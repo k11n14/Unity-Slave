@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class OniGenerator : MonoBehaviour
@@ -8,18 +9,20 @@ public class OniGenerator : MonoBehaviour
     private List<GameObject> players = new List<GameObject>();
     private List<int> playerIds = new List<int>();
     private int playerCount = 0;
+    public Text readText;
 
     private int minNumber = 10000;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     int getPlayerId(GameObject obj)
     {
         var name = obj.name;
+        //Debug.Log("obj.name:"+ obj.name);
         //Debug.Log("org:"+ name + ", " + name.Length);
 
         name = name.Substring(4);// 前四文字を削除
@@ -31,6 +34,7 @@ public class OniGenerator : MonoBehaviour
         return int.Parse(name);
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -40,13 +44,14 @@ public class OniGenerator : MonoBehaviour
         // 取得したシーンのルートにあるオブジェクトを取得
         GameObject[] rootObjects = scene.GetRootGameObjects();
 
-        if(rootObjects.Length -4 != playerCount)
+        if(rootObjects.Length -5 != playerCount)
         {
+
             // 取得したオブジェクトの名前を表示
             foreach (GameObject obj in rootObjects)
             {
                 //[Id:2]
-                if (obj.name !="ENV" && obj.name != "MAP" && obj.name != "NetworkRunnerHandler" && obj.name != "Camera")
+                if (obj.name !="ENV" && obj.name != "MAP" && obj.name != "NetworkRunnerHandler" && obj.name != "Camera" && obj.name != "Canvas")
                 {
                     int id = getPlayerId(obj);
                     // 含んでいなかった場合
@@ -68,6 +73,8 @@ public class OniGenerator : MonoBehaviour
                     if (GameObject.FindGameObjectWithTag("Oni") == null)
                     {
                         obj.tag = "Oni";
+
+                        readText.text = getPlayerId(obj).ToString();
                     }
 
                     if (id < minNumber)

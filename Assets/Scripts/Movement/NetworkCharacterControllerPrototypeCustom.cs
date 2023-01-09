@@ -2,6 +2,7 @@ using System;
 using Fusion;
 using UnityEngine;
 
+
 [RequireComponent(typeof(CharacterController))]
 [OrderBefore(typeof(NetworkTransform))]
 [DisallowMultipleComponent]
@@ -16,7 +17,8 @@ public class NetworkCharacterControllerPrototypeCustom : NetworkTransform {
   public float rotationSpeed = 15.0f;
   public float viewUpDownRotationSpeed = 50.0f;
 
-  [Networked]
+
+    [Networked]
   [HideInInspector]
   public bool IsGrounded { get; set; }
 
@@ -43,7 +45,9 @@ public class NetworkCharacterControllerPrototypeCustom : NetworkTransform {
     CacheController();
   }
 
-  public override void Spawned() {
+    
+
+    public override void Spawned() {
     base.Spawned();
     CacheController();
 
@@ -133,4 +137,5 @@ public class NetworkCharacterControllerPrototypeCustom : NetworkTransform {
     {
         transform.Rotate(0, rotationY * Runner.DeltaTime * rotationSpeed, 0);
     }
+
 }

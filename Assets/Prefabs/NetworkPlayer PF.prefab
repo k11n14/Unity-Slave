@@ -393,6 +393,7 @@ MonoBehaviour:
   - {fileID: 8439091692384082190}
   - {fileID: 5931840031319100829}
   - {fileID: 6992278167077286510}
+  - {fileID: 2430999911367086582}
   SimulationBehaviours: []
 --- !u!114 &5931840031319100829
 MonoBehaviour:
@@ -618,6 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222b1f51461004d159337bd261362e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   parent: {fileID: 0}
 --- !u!1 &6995842815122365758
 GameObject:
