@@ -18,7 +18,9 @@ public class Touch : NetworkBehaviour
     private GameObject child;
     //private bool isOni = false;
     private Text readText;
-    
+    private bool tagOni;
+    private float delay = -0.1f;
+
 
 
 
@@ -56,13 +58,22 @@ public class Touch : NetworkBehaviour
 
         if (getId(parent.name) == readText.text)
         {
+            if (!tagOni)
+                delay = 3.0f;
+
+            if(delay>0)
+                delay -= Time.deltaTime;
+
             parent.tag = "Oni";
             child.GetComponent<MeshRenderer>().material = ColorSet[0];
+            tagOni = true;
+
         }
         else
         {
             parent.tag = "Player";
             child.GetComponent<MeshRenderer>().material = ColorSet[1];
+            tagOni = false;
         }
     }
 
@@ -136,7 +147,7 @@ public class Touch : NetworkBehaviour
 
         if (parent.CompareTag("Oni") && other.transform.parent!=null)
         {
-            if(other.transform.parent.gameObject.CompareTag("Player"))
+            if(other.transform.parent.gameObject.CompareTag("Player") && delay<0)
             {
                 if (Object.HasInputAuthority)
                 {
