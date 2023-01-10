@@ -20,6 +20,7 @@ public class Touch : NetworkBehaviour
     private Text readText;
     private bool tagOni;
     private float delay = -0.1f;
+    private Text hint_text;
 
 
 
@@ -33,9 +34,10 @@ public class Touch : NetworkBehaviour
         parent = transform.parent.gameObject;
         //子オブジェクトbodyを取得
         child = transform.Find("Body").gameObject;
+        hint_text = GameObject.Find("Hint").GetComponent<Text>();
 
 
-        readText = FindObjectOfType<Text>();
+        readText = GameObject.Find("idOni").GetComponent<Text>();
 
 
 
@@ -62,11 +64,20 @@ public class Touch : NetworkBehaviour
                 delay = 3.0f;
 
             if(delay>0)
+            {
                 delay -= Time.deltaTime;
+                hint_text.text = "鬼を渡せるまで、"+ delay.ToString()+"秒"; 
+            }
+            else
+            {
+                hint_text.text = "鬼を渡せ！";
+            }
 
             parent.tag = "Oni";
             child.GetComponent<MeshRenderer>().material = ColorSet[0];
             tagOni = true;
+            
+
 
         }
         else
@@ -74,6 +85,7 @@ public class Touch : NetworkBehaviour
             parent.tag = "Player";
             child.GetComponent<MeshRenderer>().material = ColorSet[1];
             tagOni = false;
+            hint_text.text = "鬼から逃げろ！";
         }
     }
 
@@ -109,7 +121,7 @@ public class Touch : NetworkBehaviour
     public void RPC_SendMessage(string message, RpcInfo info = default)
     {
         if (_messages == null)
-            _messages = FindObjectOfType<Text>();
+            _messages = GameObject.Find("idOni").GetComponent<Text>();
         if (info.IsInvokeLocal)
         {
             message = $"{message}";
