@@ -17,11 +17,15 @@ public class Touch : NetworkBehaviour
     private GameObject parent;
     private GameObject child;
     //private bool isOni = false;
-    private Text readText;
+
+
+    public static Text readText;
+    public static string myID;
+
     private bool tagOni;
     private float delay = -0.1f;
     private Text hint_text;
-
+    private float limitTime;
 
 
 
@@ -36,9 +40,9 @@ public class Touch : NetworkBehaviour
         child = transform.Find("Body").gameObject;
         hint_text = GameObject.Find("Hint").GetComponent<Text>();
 
-
+        myID = getId(parent.name);
         readText = GameObject.Find("idOni").GetComponent<Text>();
-
+        
 
 
         //if (GameObject.FindGameObjectWithTag("Oni") == null)
@@ -46,8 +50,8 @@ public class Touch : NetworkBehaviour
         //    parent.tag = "Oni";
         //}
 
-            //if (parent.tag == "Oni")
-            //    isOni = true;
+        //if (parent.tag == "Oni")
+        //    isOni = true;
     }
 
     public  void Update()
@@ -56,7 +60,7 @@ public class Touch : NetworkBehaviour
         //Name = parent.tag;
         //print(Name);
         //Debug.Log(readText.text);
-
+        limitTime = PhaseManager._timeLimit;
 
         if (getId(parent.name) == readText.text)
         {
@@ -66,11 +70,13 @@ public class Touch : NetworkBehaviour
             if(delay>0)
             {
                 delay -= Time.deltaTime;
-                hint_text.text = "鬼を渡せるまで、"+ delay.ToString()+"秒"; 
+                hint_text.text = "ゲーム時間残り、" + limitTime + "秒\n";
+                hint_text.text += "安全時間終了まで、"+ delay.ToString()+"秒"; 
             }
             else
             {
-                hint_text.text = "鬼を渡せ！";
+                hint_text.text = "ゲーム時間残り、" + limitTime + "秒\n";
+                hint_text.text += "奴隷開放権を守り抜け！";
             }
 
             parent.tag = "Oni";
@@ -85,7 +91,8 @@ public class Touch : NetworkBehaviour
             parent.tag = "Player";
             child.GetComponent<MeshRenderer>().material = ColorSet[1];
             tagOni = false;
-            hint_text.text = "鬼から逃げろ！";
+            hint_text.text = "ゲーム時間残り、" + limitTime + "秒\n";
+            hint_text.text += "奴隷解放権を奪い取れ！";
         }
     }
 
