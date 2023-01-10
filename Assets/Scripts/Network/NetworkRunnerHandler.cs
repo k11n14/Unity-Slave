@@ -12,18 +12,25 @@ using System.Linq;
 public class NetworkRunnerHandler : MonoBehaviour
 {
     public NetworkRunner networkRunnerPrefab;
+    public static bool isAlive = false;
 
     NetworkRunner networkRunner;
 
     // Start is called before the first frame update
     void Start()
     {
+ 
         networkRunner = Instantiate(networkRunnerPrefab);
+
         networkRunner.name = "Network runner";
+
+     
 
         var clientTask = InitializeNetworkRunner(networkRunner, GameMode.AutoHostOrClient, NetAddress.Any(), SceneManager.GetActiveScene().buildIndex, null);
 
         Debug.Log($"Server NetworkRunner started.");
+
+        isAlive = true;
     }
 
     protected virtual Task InitializeNetworkRunner(NetworkRunner runner, GameMode gameMode, NetAddress address, SceneRef scene, Action<NetworkRunner> initialized)
@@ -37,7 +44,7 @@ public class NetworkRunnerHandler : MonoBehaviour
         }
 
         runner.ProvideInput = true;
-
+  
         return runner.StartGame(new StartGameArgs
         {
             GameMode = gameMode,

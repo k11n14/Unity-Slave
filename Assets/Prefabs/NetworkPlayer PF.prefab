@@ -554,6 +554,7 @@ GameObject:
   - component: {fileID: 5931840031319100829}
   - component: {fileID: 6992278167077286510}
   - component: {fileID: 8954754819099828064}
+  - component: {fileID: 4496266678956237556}
   m_Layer: 0
   m_Name: NetworkPlayer PF
   m_TagString: Untagged
@@ -636,6 +637,7 @@ MonoBehaviour:
   - {fileID: 8439091692384082190}
   - {fileID: 5931840031319100829}
   - {fileID: 6992278167077286510}
+  - {fileID: 4496266678956237556}
   - {fileID: 2430999911367086582}
   SimulationBehaviours: []
 --- !u!114 &5931840031319100829
@@ -700,6 +702,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841b71c039f81374fa3f1817941fb551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4496266678956237556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4398370856537798957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c748e1628bfb4094a21c94561c69662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _timeLimit: 120
 --- !u!1 &6745662296497828216
 GameObject:
   m_ObjectHideFlags: 0
