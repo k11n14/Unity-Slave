@@ -71,13 +71,13 @@ public class Touch : NetworkBehaviour
                 if(delay>0)
                 {
                     delay -= Time.deltaTime;
-                    hint_text.text = "ゲーム時間残り、" + PhaseManager._timeLimit + "秒\n";
-                    hint_text.text += "安全時間終了まで、"+ delay.ToString()+"秒"; 
+                    hint_text.text = PhaseManager._timeLimit + " seconds left in the game\n";
+                    hint_text.text += "You are safe for " + delay.ToString()+"seconds"; 
                 }
                 else
                 {
-                    hint_text.text = "ゲーム時間残り、" + PhaseManager._timeLimit + "秒\n";
-                    hint_text.text += "奴隷開放権を守り抜け！";
+                    hint_text.text = PhaseManager._timeLimit + " seconds left in the game\n";
+                    hint_text.text += "RUN AWAY!";
                 }
 
                 parent.tag = "Oni";
@@ -92,13 +92,13 @@ public class Touch : NetworkBehaviour
                 parent.tag = "Player";
                 child.GetComponent<MeshRenderer>().material = ColorSet[1];
                 tagOni = false;
-                hint_text.text = "ゲーム時間残り、" + PhaseManager._timeLimit + "秒\n";
-                hint_text.text += "奴隷解放権を奪い取れ！";
+                hint_text.text = PhaseManager._timeLimit + " seconds left in the game\n";
+                hint_text.text += "Catch!";
             }
         }
         else
         {
-            hint_text.text = "ゲーム終了！";
+            hint_text.text = "Finish";
         }
     }
 
