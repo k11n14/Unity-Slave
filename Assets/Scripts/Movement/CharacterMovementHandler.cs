@@ -41,10 +41,10 @@ public class CharacterMovementHandler : NetworkBehaviour
             transform.rotation = rotation;
 
             //Move
-                Vector3 moveDirection = transform.forward * networkInputData.movementInput.y + transform.right * networkInputData.movementInput.x;
-                moveDirection.Normalize();
+            Vector3 moveDirection = transform.forward * networkInputData.movementInput.y + transform.right * networkInputData.movementInput.x;
+            moveDirection.Normalize();
 
-                networkCharacterControllerPrototypeCustom.Move(moveDirection);
+            networkCharacterControllerPrototypeCustom.Move(moveDirection);
 
             //Jump
             if (networkInputData.isJumpPressed)
@@ -62,6 +62,7 @@ public class CharacterMovementHandler : NetworkBehaviour
     {
         if (transform.position.y < -12)
             transform.position = Utils.GetRandomSpawnPoint();
-    }
 
+    }
 }
+
