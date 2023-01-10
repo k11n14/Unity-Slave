@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PhaseManager : NetworkBehaviour
 {
 
-    public static float _timeLimit = 10.0f;
+    public static float _timeLimit = 120.0f;
 
 
     // Start is called before the first frame update
