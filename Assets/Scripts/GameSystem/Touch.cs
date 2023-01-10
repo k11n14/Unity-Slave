@@ -10,7 +10,7 @@ public class Touch : NetworkBehaviour
     //public string Name { get; set; }
     //private string _name;
 
-    public GameObject parent;
+    private GameObject parent;
     //private bool isOni = false;
     private Text readText;
     
@@ -18,6 +18,7 @@ public class Touch : NetworkBehaviour
 
 
     // Start is called before the first frame update
+
     void Start()
     {
         //Name = _name;
@@ -120,15 +121,16 @@ public class Touch : NetworkBehaviour
 
 
 
-        if (parent.tag == "Oni" && other.transform.parent.gameObject.tag == "Player")
+        if (parent.CompareTag("Oni") && other.transform.parent!=null)
         {
-
-            if (Object.HasInputAuthority)
+            if(other.transform.parent.gameObject.CompareTag("Player"))
             {
-                //ID〇〇さんにタッチした宣言をする！
-                RPC_SendMessage(getId(other.transform.parent.gameObject.name));
+                if (Object.HasInputAuthority)
+                {
+                    //ID〇〇さんにタッチした宣言をする！
+                    RPC_SendMessage(getId(other.transform.parent.gameObject.name));
+                }
             }
-
             //other.transform.parent.gameObject.tag = "Oni";
         }
     }
