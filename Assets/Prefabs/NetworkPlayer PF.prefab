@@ -520,7 +520,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2baf260ec284cd248b4192b400c291ce, type: 2}
+  - {fileID: 2100000, guid: 50ac9aaf650337544b871e557fa095ca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -620,7 +620,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  parent: {fileID: 0}
+  ColorSet:
+  - {fileID: 2100000, guid: a5f9f2b882f176143b2fa5917f878bb5, type: 2}
+  - {fileID: 2100000, guid: dbae1e62cb3d1f7469b9a315a759550f, type: 2}
 --- !u!1 &6995842815122365758
 GameObject:
   m_ObjectHideFlags: 0
