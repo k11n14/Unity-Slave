@@ -6,12 +6,12 @@ public static class Utils
 {
     public static Vector3 GetRandomSpawnPoint()
     {
-        return new Vector3(Random.Range(-20, 20), 10, Random.Range(-20, 20));
+        return new Vector3(Random.Range(-20, 20), 4, Random.Range(-20, 20));
     }
 
     public static Vector3 GetPrisonSpawnPoint()
     {
-        return new Vector3(Random.Range(6, 20), 3 , Random.Range(20, 33));
+        return new Vector3(Random.Range(11, 18), 12 , Random.Range(23, 30));
     }
 
     public static void SetRenderLayerInChildren(Transform transform, int layerNumber)
