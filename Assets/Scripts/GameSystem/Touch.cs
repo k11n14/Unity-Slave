@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Fusion;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,11 @@ public class Touch : NetworkBehaviour
     //public string Name { get; set; }
     //private string _name;
 
+    //マテリアルを保持しておく。0:鬼、1:プレイヤー
+    public Material[] ColorSet = new Material[2];
+
     private GameObject parent;
+    private GameObject child;
     //private bool isOni = false;
     private Text readText;
     
@@ -24,6 +29,9 @@ public class Touch : NetworkBehaviour
         //Name = _name;
         //親オブジェクトを取得(NetworkPlayer PF [id=*])
         parent = transform.parent.gameObject;
+        //子オブジェクトbodyを取得
+        child = transform.Find("Body").gameObject;
+
 
         readText = FindObjectOfType<Text>();
 
@@ -45,11 +53,16 @@ public class Touch : NetworkBehaviour
         //print(Name);
         //Debug.Log(readText.text);
 
+
         if (getId(parent.name) == readText.text)
+        {
             parent.tag = "Oni";
+            child.GetComponent<MeshRenderer>().material = ColorSet[0];
+        }
         else
         {
             parent.tag = "Player";
+            child.GetComponent<MeshRenderer>().material = ColorSet[1];
         }
     }
 
