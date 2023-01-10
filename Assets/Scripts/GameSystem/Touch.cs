@@ -25,7 +25,6 @@ public class Touch : NetworkBehaviour
     private bool tagOni;
     private float delay = -0.1f;
     private Text hint_text;
-    private float limitTime;
 
 
 
@@ -39,10 +38,10 @@ public class Touch : NetworkBehaviour
         //子オブジェクトbodyを取得
         child = transform.Find("Body").gameObject;
         hint_text = GameObject.Find("Hint").GetComponent<Text>();
-
+        readText = GameObject.Find("idOni").GetComponent<Text>();
         myID = getId(parent.name);
         
-        
+
 
 
         //if (GameObject.FindGameObjectWithTag("Oni") == null)
@@ -60,40 +59,46 @@ public class Touch : NetworkBehaviour
         //Name = parent.tag;
         //print(Name);
         //Debug.Log(readText.text);
-        limitTime = PhaseManager._timeLimit;
-        readText = GameObject.Find("idOni").GetComponent<Text>();
 
-        if (getId(parent.name) == readText.text)
-        {
-            if (!tagOni)
-                delay = 3.0f;
+        if (PhaseManager._timeLimit >= 0)
+        { 
 
-            if(delay>0)
+            if (getId(parent.name) == readText.text)
             {
-                delay -= Time.deltaTime;
-                hint_text.text = "ゲーム時間残り、" + limitTime + "秒\n";
-                hint_text.text += "安全時間終了まで、"+ delay.ToString()+"秒"; 
-            }
-            else
-            {
-                hint_text.text = "ゲーム時間残り、" + limitTime + "秒\n";
-                hint_text.text += "奴隷開放権を守り抜け！";
-            }
+                if (!tagOni)
+                    delay = 3.0f;
 
-            parent.tag = "Oni";
-            child.GetComponent<MeshRenderer>().material = ColorSet[0];
-            tagOni = true;
+                if(delay>0)
+                {
+                    delay -= Time.deltaTime;
+                    hint_text.text = "ゲーム時間残り、" + PhaseManager._timeLimit + "秒\n";
+                    hint_text.text += "安全時間終了まで、"+ delay.ToString()+"秒"; 
+                }
+                else
+                {
+                    hint_text.text = "ゲーム時間残り、" + PhaseManager._timeLimit + "秒\n";
+                    hint_text.text += "奴隷開放権を守り抜け！";
+                }
+
+                parent.tag = "Oni";
+                child.GetComponent<MeshRenderer>().material = ColorSet[0];
+                tagOni = true;
             
 
 
+            }
+            else
+            {
+                parent.tag = "Player";
+                child.GetComponent<MeshRenderer>().material = ColorSet[1];
+                tagOni = false;
+                hint_text.text = "ゲーム時間残り、" + PhaseManager._timeLimit + "秒\n";
+                hint_text.text += "奴隷解放権を奪い取れ！";
+            }
         }
         else
         {
-            parent.tag = "Player";
-            child.GetComponent<MeshRenderer>().material = ColorSet[1];
-            tagOni = false;
-            hint_text.text = "ゲーム時間残り、" + limitTime + "秒\n";
-            hint_text.text += "奴隷解放権を奪い取れ！";
+            hint_text.text = "ゲーム終了！";
         }
     }
 

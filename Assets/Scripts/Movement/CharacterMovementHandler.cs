@@ -11,6 +11,10 @@ public class CharacterMovementHandler : NetworkBehaviour
     //Other components
     NetworkCharacterControllerPrototypeCustom networkCharacterControllerPrototypeCustom;
 
+    private string myID;
+    private Text readText;
+    private bool isGameEnd = false;
+
     private void Awake()
     {
         networkCharacterControllerPrototypeCustom = GetComponent<NetworkCharacterControllerPrototypeCustom>();
@@ -19,12 +23,12 @@ public class CharacterMovementHandler : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        myID = getId(name);
+        //print(myID);
+
+        readText = GameObject.Find("idOni").GetComponent<Text>();
+
     }
-
-
-
-
-
 
 
     public override void FixedUpdateNetwork()
@@ -54,9 +58,32 @@ public class CharacterMovementHandler : NetworkBehaviour
             CheckFallRespawn();
         }
 
+        //print(PhaseManager._timeLimit);
+        //時間切れかつ、自分が鬼じゃなかったら
+        if(PhaseManager._timeLimit<=0 && (readText.text != myID) && !isGameEnd) 
+        {
+            transform.position = Utils.GetPrisonSpawnPoint();
+            isGameEnd = true;
+        }
+
     }
 
+    string getId(string objname)
+    {
+        //print(objname);
+        var name = objname;
+        //Debug.Log("obj.name:"+ obj.name);
+        //Debug.Log("org:"+ name + ", " + name.Length);
 
+        name = name.Substring(4);// 前四文字を削除
+        //Debug.Log("4:"+name + ", " + name.Length);
+
+        name = name.Substring(0, name.Length - 1);//後ろ一文字を削除
+        //Debug.Log("1:"+ name + ", " + name.Length);
+
+        //print(name);
+        return name;
+    }
 
     void CheckFallRespawn()
     {
