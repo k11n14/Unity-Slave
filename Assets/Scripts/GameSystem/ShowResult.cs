@@ -20,7 +20,9 @@ public class ShowResult : MonoBehaviour
         resultText = GameObject.Find("result").GetComponent<Text>();
 
         if(Touch.myID == Touch.readText.text)
+        { 
             resultText.text = "奴隷から開放されました。";
+        }
         else
         {
             resultText.text = "まだまだ奴隷のままです";

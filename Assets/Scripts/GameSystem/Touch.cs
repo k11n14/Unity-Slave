@@ -41,7 +41,7 @@ public class Touch : NetworkBehaviour
         hint_text = GameObject.Find("Hint").GetComponent<Text>();
 
         myID = getId(parent.name);
-        readText = GameObject.Find("idOni").GetComponent<Text>();
+        
         
 
 
@@ -61,6 +61,7 @@ public class Touch : NetworkBehaviour
         //print(Name);
         //Debug.Log(readText.text);
         limitTime = PhaseManager._timeLimit;
+        readText = GameObject.Find("idOni").GetComponent<Text>();
 
         if (getId(parent.name) == readText.text)
         {
