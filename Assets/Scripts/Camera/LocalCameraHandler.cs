@@ -20,7 +20,7 @@ public class LocalCameraHandler : MonoBehaviour
     //カメラ回転用係数(値が大きいほど回転速度が上がる)
     public float moveX = 4.0f;     //マウスドラッグによるカメラX方向回転係数
     public float moveY = 2.0f;     //マウスドラッグによるカメラY方向回転係数
-    public float moveX_QE = 0.1f;  //QEキーによるカメラX方向回転係数
+    private float moveX_QE = 0.5f;  //QEキーによるカメラX方向回転係数
 
 
     public Transform cameraAnchorPoint;
